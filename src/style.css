@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dashboard: #1a1a2e;
+  --color-surface: #2d3436;
+  --color-foreground: #bde0fe;
+  --color-muted: #70d6ff;
+  --color-accent: #00e5ff;
+  --color-accent-muted: rgba(0, 229, 255, 0.12);
+  --color-line: #483d8b;
+  --color-success: #00e5ff;
+  --color-danger: #d00000;
+  --color-purple: #6b4e71;
+  --color-warning: #70d6ff;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --shadow-card: rgba(0, 0, 0, 0.45) 0 10px 15px -3px;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-dashboard font-sans text-base leading-normal text-foreground antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded bg-line;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted;
+  }
+}
+
+@layer components {
+  .dashboard-card {
+    @apply rounded-xl border border-line bg-surface p-5;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-label {
+    @apply text-sm font-semibold uppercase tracking-wide text-muted;
+  }
+}
+
+@keyframes pulse-live {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 229, 255, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+  }
+}
+
+@utility animate-pulse-live {
+  animation: pulse-live 2s infinite;
+}
